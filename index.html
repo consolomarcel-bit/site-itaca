@@ -29,7 +29,7 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             font-family: 'Montserrat', sans-serif;
-            line-height: 1.6;
+            line-height: 1.5;
             padding-bottom: 60px;
         }
 
@@ -40,24 +40,26 @@
         }
 
         .logo-container {
-            width: 150px;
-            height: 150px;
+            width: 130px;
+            height: 130px;
             margin: 0 auto 15px;
             border-radius: 50%;
             box-shadow: 0 0 25px rgba(197, 160, 89, 0.2);
             overflow: hidden;
             border: 2px solid var(--gold);
+            background-color: #000;
         }
 
         .logo-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
         }
 
         h1 {
             font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             color: var(--gold);
             letter-spacing: 2px;
             margin-bottom: 5px;
@@ -65,10 +67,16 @@
 
         .subtitle {
             font-family: 'Cinzel', serif;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
             letter-spacing: 3px;
             text-transform: uppercase;
+        }
+
+        /* Sistema de Abas Inteligente e Seguro sem Erros */
+        .tabs-wrapper {
+            display: flex;
+            flex-direction: column;
         }
 
         .nav-tabs {
@@ -87,51 +95,62 @@
             display: none;
         }
 
-        .tab-btn {
+        .tab-label {
             flex: 0 0 auto;
-            padding: 15px 20px;
+            padding: 15px 18px;
             color: var(--text-muted);
-            background: none;
-            border: none;
             font-family: 'Cinzel', serif;
             font-size: 0.85rem;
             letter-spacing: 1px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            text-align: center;
             border-bottom: 2px solid transparent;
+            transition: all 0.3s;
         }
 
-        .tab-btn.active {
+        /* Inputs invisíveis que controlam as abas */
+        input[type="radio"].tab-switch {
+            display: none;
+        }
+
+        .tab-content {
+            display: none;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 25px 20px;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Lógica Visual de Ativação das Abas */
+        #tab1:checked ~ .nav-tabs .label1,
+        #tab2:checked ~ .nav-tabs .label2,
+        #tab3:checked ~ .nav-tabs .label3,
+        #tab4:checked ~ .nav-tabs .label4,
+        #tab5:checked ~ .nav-tabs .label5 {
             color: var(--gold);
             border-bottom: 2px solid var(--gold);
             background-color: rgba(197, 160, 89, 0.05);
         }
 
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 25px 20px;
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
+        #tab1:checked ~ .content-container #manifesto,
+        #tab2:checked ~ .content-container #linhagem,
+        #tab3:checked ~ .content-container #cronograma,
+        #tab4:checked ~ .content-container #cadastro,
+        #tab5:checked ~ .content-container #duvidas {
             display: block;
-            animation: fadeIn 0.4s ease;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
+        /* Correção dos textos esticados */
         h2 {
             font-family: 'Cinzel', serif;
             color: var(--gold);
-            font-size: 1.3rem;
-            margin-bottom: 20px;
+            font-size: 1.25rem;
+            margin-bottom: 15px;
             border-bottom: 1px solid rgba(197, 160, 89, 0.2);
             padding-bottom: 8px;
             letter-spacing: 1px;
@@ -141,7 +160,7 @@
             margin-bottom: 15px;
             font-size: 0.95rem;
             color: #ccc;
-            text-align: justify;
+            text-align: left; /* Esquerda fixa impede o efeito esticado */
         }
 
         .highlight-box {
@@ -156,12 +175,13 @@
             margin-bottom: 0;
             font-style: italic;
             color: var(--gold-light);
+            text-align: left;
         }
 
         .day-title {
             font-family: 'Cinzel', serif;
             color: var(--gold-light);
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             margin: 25px 0 15px;
             border-left: 2px solid var(--gold);
             padding-left: 8px;
@@ -200,12 +220,14 @@
             font-size: 0.95rem;
             font-weight: 500;
             color: #fff;
+            text-align: left;
         }
 
         .event-desc {
             font-size: 0.85rem;
             color: var(--text-muted);
             margin-top: 2px;
+            text-align: left;
         }
 
         form {
@@ -226,6 +248,7 @@
             margin-bottom: 6px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            text-align: left;
         }
 
         input, select {
@@ -237,11 +260,6 @@
             border-radius: 6px;
             font-family: 'Montserrat', sans-serif;
             font-size: 0.95rem;
-        }
-
-        input:focus, select:focus {
-            outline: none;
-            border-color: var(--gold);
         }
 
         button.btn-submit {
@@ -260,40 +278,40 @@
             box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
         }
 
-        .faq-item {
+        /* FAQ Estilo Sanfona Puramente Visual */
+        .faq-box {
             background-color: var(--card-bg);
             margin-bottom: 12px;
             border-radius: 8px;
             border: 1px solid #1f1f1f;
-            overflow: hidden;
         }
 
-        .faq-question {
+        .faq-box input[type="checkbox"] {
+            display: none;
+        }
+
+        .faq-title {
             padding: 15px;
             font-weight: 500;
             font-size: 0.95rem;
-            cursor: pointer;
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            cursor: pointer;
         }
 
-        .faq-answer {
-            padding: 0 15px;
+        .faq-text {
             max-height: 0;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: max-height 0.3s ease;
+            padding: 0 15px;
             color: var(--text-muted);
             font-size: 0.9rem;
+            text-align: left;
         }
 
-        .faq-item.active .faq-answer {
-            padding: 10px 15px 15px;
-            max-height: 250px;
-        }
-
-        .faq-item.active .faq-question {
-            color: var(--gold);
+        .faq-box input[type="checkbox"]:checked ~ .faq-text {
+            max-height: 200px;
+            padding: 0 15px 15px 15px;
         }
 
         footer {
@@ -316,25 +334,16 @@
         <div class="subtitle">ÍTACA • O RETORNO AO CENTRO</div>
     </header>
 
-    <nav class="nav-tabs">
-        <button class="tab-btn active" onclick="switchTab('manifesto')">Manifesto</button>
-        <button class="tab-btn" onclick="switchTab('linhagem')">A Linhagem</button>
-        <button class="tab-btn" onclick="switchTab('cronograma')">Cronograma</button>
-        <button class="tab-btn" onclick="switchTab('cadastro')">Pré-Cadastro</button>
-        <button class="tab-btn" onclick="switchTab('duvidas')">Dúvidas</button>
-    </nav>
+    <div class="tabs-wrapper">
+        <!-- Elementos de controle escondidos -->
+        <input type="radio" name="tabs" id="tab1" class="tab-switch" checked>
+        <input type="radio" name="tabs" id="tab2" class="tab-switch">
+        <input type="radio" name="tabs" id="tab3" class="tab-switch">
+        <input type="radio" name="tabs" id="tab4" class="tab-switch">
+        <input type="radio" name="tabs" id="tab5" class="tab-switch">
 
-    <div class="container">
-        
-        <div id="manifesto" class="tab-content active">
-            <h2>O Chamado de Ítaca</h2>
-            <p>E se a vida que você construiu já não couber em quem você se tornou? Você aprendeu a sustentar relações, responsabilidades, expectativas e versões de si. Mas chega um momento em que continuar se adaptando não é maturidade. É distância de si.</p>
-            <div class="highlight-box">
-                <p>"Ítaca não é voltar ao passado. É retornar ao próprio centro."</p>
-            </div>
-            <p>Você não retorna para ser quem você era. Retorna para buscar a parte de você que nunca deveria ter ficado para trás. Uma Travessia para reconhecer o que já não cabe, reencontrar o que permanece vivo e integrar o corpo, desejo, feminino, masculino, limite e direção.</p>
-        </div>
-
-        <div id="linhagem" class="tab-content">
-            <h2>A Tradição e o Sangue de Éwora</h2>
-            <p>Esta jornada foi desenhada sob a luz da tradição, natureza e ancestralidade. Um reencontro profundo com as forças sutis e com a egrégora viva do <strong>Sangue de Éwora</strong>.</p>
+        <!-- Barra de Abas clicáveis -->
+        <nav class="nav-tabs">
+            <label for="tab1" class="tab-label label1">Manifesto</label>
+            <label for="tab2" class="tab-label label2">A Linhagem</label>
+            <label for="tab3" class="tab-label label3">Cronograma</label>
