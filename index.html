@@ -29,7 +29,7 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             font-family: 'Montserrat', sans-serif;
-            line-height: 1.5;
+            line-height: 1.6;
             padding-bottom: 60px;
         }
 
@@ -73,7 +73,6 @@
             text-transform: uppercase;
         }
 
-        /* Sistema de Abas Inteligente e Seguro sem Erros */
         .tabs-wrapper {
             display: flex;
             flex-direction: column;
@@ -108,7 +107,6 @@
             transition: all 0.3s;
         }
 
-        /* Inputs invisíveis que controlam as abas */
         input[type="radio"].tab-switch {
             display: none;
         }
@@ -126,7 +124,6 @@
             to { opacity: 1; }
         }
 
-        /* Lógica Visual de Ativação das Abas */
         #tab1:checked ~ .nav-tabs .label1,
         #tab2:checked ~ .nav-tabs .label2,
         #tab3:checked ~ .nav-tabs .label3,
@@ -145,7 +142,6 @@
             display: block;
         }
 
-        /* Correção dos textos esticados */
         h2 {
             font-family: 'Cinzel', serif;
             color: var(--gold);
@@ -156,11 +152,30 @@
             letter-spacing: 1px;
         }
 
+        h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-light);
+            font-size: 1.05rem;
+            margin: 20px 0 10px;
+            letter-spacing: 1px;
+        }
+
         p {
             margin-bottom: 15px;
             font-size: 0.95rem;
             color: #ccc;
-            text-align: left; /* Esquerda fixa impede o efeito esticado */
+            text-align: left;
+        }
+
+        ul {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            color: #ccc;
+            font-size: 0.95rem;
+        }
+
+        li {
+            margin-bottom: 5px;
         }
 
         .highlight-box {
@@ -181,10 +196,21 @@
         .day-title {
             font-family: 'Cinzel', serif;
             color: var(--gold-light);
-            font-size: 1.05rem;
-            margin: 25px 0 15px;
-            border-left: 2px solid var(--gold);
-            padding-left: 8px;
+            font-size: 1.1rem;
+            margin: 30px 0 15px;
+            border-left: 3px solid var(--gold);
+            padding-left: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-subtitle {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 0.95rem;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
         }
 
         .timeline {
@@ -195,7 +221,7 @@
 
         .timeline-item {
             position: relative;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .timeline-item::before {
@@ -218,7 +244,7 @@
 
         .event-title {
             font-size: 0.95rem;
-            font-weight: 500;
+            font-weight: 600;
             color: #fff;
             text-align: left;
         }
@@ -226,7 +252,7 @@
         .event-desc {
             font-size: 0.85rem;
             color: var(--text-muted);
-            margin-top: 2px;
+            margin-top: 4px;
             text-align: left;
         }
 
@@ -262,6 +288,14 @@
             font-size: 0.95rem;
         }
 
+        .note-text {
+            font-size: 0.8rem;
+            color: var(--gold-light);
+            margin-top: 10px;
+            font-style: italic;
+            text-align: center;
+        }
+
         button.btn-submit {
             width: 100%;
             padding: 15px;
@@ -278,7 +312,6 @@
             box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
         }
 
-        /* FAQ Estilo Sanfona Puramente Visual */
         .faq-box {
             background-color: var(--card-bg);
             margin-bottom: 12px;
@@ -310,8 +343,9 @@
         }
 
         .faq-box input[type="checkbox"]:checked ~ .faq-text {
-            max-height: 200px;
-            padding: 0 15px 15px 15px;
+            max-height: 350px;
+            padding: 10px 15px 15px 15px;
+            border-top: 1px solid #1f1f1f;
         }
 
         footer {
@@ -335,15 +369,4 @@
     </header>
 
     <div class="tabs-wrapper">
-        <!-- Elementos de controle escondidos -->
         <input type="radio" name="tabs" id="tab1" class="tab-switch" checked>
-        <input type="radio" name="tabs" id="tab2" class="tab-switch">
-        <input type="radio" name="tabs" id="tab3" class="tab-switch">
-        <input type="radio" name="tabs" id="tab4" class="tab-switch">
-        <input type="radio" name="tabs" id="tab5" class="tab-switch">
-
-        <!-- Barra de Abas clicáveis -->
-        <nav class="nav-tabs">
-            <label for="tab1" class="tab-label label1">Manifesto</label>
-            <label for="tab2" class="tab-label label2">A Linhagem</label>
-            <label for="tab3" class="tab-label label3">Cronograma</label>
