@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Véu e Chama: Ítaca – O Retorno ao Centro</title>
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0d0d0d;
+            --card-bg: #141414;
+            --gold: #c5a059;
+            --gold-light: #e5c383;
+            --text-color: #e0e0e0;
+            --text-muted: #a0a0a0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        header {
+            text-align: center;
+            padding: 35px 20px;
+            background: linear-gradient(to bottom, #1a140a 0%, var(--bg-color) 100%);
+        }
+
+        .logo-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            box-shadow: 0 0 25px rgba(197, 160, 89, 0.2);
+            overflow: hidden;
+            border: 2px solid var(--gold);
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .nav-tabs {
+            display: flex;
+            overflow-x: auto;
+            background-color: var(--card-bg);
+            border-top: 1px solid #262626;
+            border-bottom: 1px solid #262626;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            scrollbar-width: none;
+        }
+
+        .nav-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab-btn {
+            flex: 0 0 auto;
+            padding: 15px 20px;
+            color: var(--text-muted);
+            background: none;
+            border: none;
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+
+        .tab-btn.active {
+            color: var(--gold);
+            border-bottom: 2px solid var(--gold);
+            background-color: rgba(197, 160, 89, 0.05);
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 25px 20px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+            padding-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            color: #ccc;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background-color: var(--card-bg);
+            border-left: 3px solid var(--gold);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+            font-style: italic;
+            color: var(--gold-light);
+        }
+
+        .day-title {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-light);
+            font-size: 1.1rem;
+            margin: 25px 0 15px;
+            border-left: 2px solid var(--gold);
+            padding-left: 8px;
+        }
+
+        .timeline {
+            border-left: 1px solid #262626;
+            padding-left: 15px;
+            margin-left: 10px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 5px;
+            width: 9px;
+            height: 9px;
+            background-color: var(--gold);
+            border-radius: 50%;
+        }
+
+        .time {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        .event-title {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .event-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        form {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #222;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--gold);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            background-color: #080808;
+            border: 1px solid #333;
+            color: #fff;
+            border-radius: 6px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        button.btn-submit {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #a47f3b 0%, #c5a059 100%);
+            border: none;
+            color: #000;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
+        }
+
+        .faq-item {
+            background-color: var(--card-bg);
+            margin-bottom: 12px;
+            border-radius: 8px;
+            border: 1px solid #1f1f1f;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 15px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            padding: 0 15px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 10px 15px 15px;
+            max-height: 250px;
+        }
+
+        .faq-item.active .faq-question {
+            color: var(--gold);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.75rem;
+            color: #555;
+            border-top: 1px solid #141414;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="https://ibb.co" alt="Logo Véu e Chama">
+        </div>
+        <h1>VÉU & CHAMA</h1>
+        <div class="subtitle">ÍTACA • O RETORNO AO CENTRO</div>
+    </header>
+
+    <nav class="nav-tabs">
+        <button class="tab-btn active" onclick="switchTab('manifesto')">Manifesto</button>
+        <button class="tab-btn" onclick="switchTab('linhagem')">A Linhagem</button>
+        <button class="tab-btn" onclick="switchTab('cronograma')">Cronograma</button>
+        <button class="tab-btn" onclick="switchTab('cadastro')">Pré-Cadastro</button>
+        <button class="tab-btn" onclick="switchTab('duvidas')">Dúvidas</button>
+    </nav>
+
+    <div class="container">
+        
+        <div id="manifesto" class="tab-content active">
+            <h2>O Chamado de Ítaca</h2>
+            <p>E se a vida que você construiu já não couber em quem você se tornou? Você aprendeu a sustentar relações, responsabilidades, expectativas e versões de si. Mas chega um momento em que continuar se adaptando não é maturidade. É distância de si.</p>
+            <div class="highlight-box">
+                <p>"Ítaca não é voltar ao passado. É retornar ao próprio centro."</p>
+            </div>
+            <p>Você não retorna para ser quem você era. Retorna para buscar a parte de você que nunca deveria ter ficado para trás. Uma Travessia para reconhecer o que já não cabe, reencontrar o que permanece vivo e integrar o corpo, desejo, feminino, masculino, limite e direção.</p>
+        </div>
+
+        <div id="linhagem" class="tab-content">
+            <h2>A Tradição e o Sangue de Éwora</h2>
+            <p>Esta jornada foi desenhada sob a luz da tradição, natureza e ancestralidade. Um reencontro profundo com as forças sutis e com a egrégora viva do <strong>Sangue de Éwora</strong>.</p>
