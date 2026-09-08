@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Véu e Chama: Ítaca – O Retorno ao Centro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #0d0d0d;
+            --card-bg: #141414;
+            --gold: #c5a059;
+            --gold-light: #e5c383;
+            --text-color: #e0e0e0;
+            --text-muted: #a0a0a0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            padding-bottom: 60px;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        header {
+            text-align: center;
+            padding: 35px 20px;
+            background: linear-gradient(to bottom, #1a140a 0%, var(--bg-color) 100%);
+        }
+
+        .presents {
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            color: var(--gold);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        .logo-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            box-shadow: 0 0 25px rgba(197, 160, 89, 0.25);
+            overflow: hidden;
+            border: 2px solid var(--gold);
+            background-color: #000;
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            color: var(--gold);
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .event-dates {
+            margin-top: 14px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            letter-spacing: 1px;
+        }
+
+        .tabs-wrapper {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .nav-tabs {
+            display: flex;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            background-color: var(--card-bg);
+            border-top: 1px solid #262626;
+            border-bottom: 1px solid #262626;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            scrollbar-width: none;
+            width: 100%;
+        }
+
+        .nav-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab-label {
+            flex: 0 0 auto;
+            padding: 15px 18px;
+            color: var(--text-muted);
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            text-align: center;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        input[type="radio"].tab-switch {
+            display: none;
+        }
+
+        .tab-content {
+            display: none;
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 25px 20px;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        #tab1:checked ~ .nav-tabs .label1,
+        #tab2:checked ~ .nav-tabs .label2,
+        #tab3:checked ~ .nav-tabs .label3,
+        #tab4:checked ~ .nav-tabs .label4,
+        #tab5:checked ~ .nav-tabs .label5 {
+            color: var(--gold);
+            border-bottom: 2px solid var(--gold);
+            background-color: rgba(197, 160, 89, 0.05);
+        }
+
+        #tab1:checked ~ .content-container #manifesto,
+        #tab2:checked ~ .content-container #linhagem,
+        #tab3:checked ~ .content-container #cronograma,
+        #tab4:checked ~ .content-container #cadastro,
+        #tab5:checked ~ .content-container #duvidas {
+            display: block;
+        }
+
+        h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+            padding-bottom: 8px;
+            letter-spacing: 1px;
+            text-align: left;
+        }
+
+        h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-light);
+            font-size: 1.05rem;
+            margin: 20px 0 10px;
+            letter-spacing: 1px;
+            text-align: left;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            color: #ccc;
+            text-align: left;
+        }
+
+        ul {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            color: #ccc;
+            font-size: 0.95rem;
+            text-align: left;
+        }
+
+        li {
+            margin-bottom: 8px;
+            text-align: left;
+        }
+
+        .highlight-box {
+            background-color: var(--card-bg);
+            border-left: 3px solid var(--gold);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+            font-style: italic;
+            color: var(--gold-light);
+            text-align: left;
+        }
+
+        .day-title {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-light);
+            font-size: 1.1rem;
+            margin: 30px 0 15px;
+            border-left: 3px solid var(--gold);
+            padding-left: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: left;
+        }
+
+        .day-subtitle {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin: -10px 0 15px 13px;
+            font-style: italic;
+            text-align: left;
+        }
+
+        .timeline {
+            border-left: 1px solid #262626;
+            padding-left: 15px;
+            margin-left: 10px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 22px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 5px;
+            width: 9px;
+            height: 9px;
+            background-color: var(--gold);
+            border-radius: 50%;
+        }
+
+        .time {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        .event-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #fff;
+            text-align: left;
+        }
+
+        .event-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+            text-align: left;
+        }
+
+        form {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #222;
+            width: 100%;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--gold);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: left;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            background-color: #080808;
+            border: 1px solid #333;
+            color: #fff;
+            border-radius: 6px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+        }
+
+        .free-badge {
+            display: inline-block;
+            background-color: rgba(197, 160, 89, 0.12);
+            border: 1px solid var(--gold);
+            color: var(--gold-light);
+            font-family: 'Cinzel', serif;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            margin-bottom: 18px;
+        }
+
+        .note-text {
+            font-size: 0.8rem;
+            color: var(--gold-light);
+            margin-top: 12px;
+            font-style: italic;
+            text-align: center;
+        }
+
+        button.btn-submit {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #a47f3b 0%, #c5a059 100%);
+            border: none;
+            color: #000;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
+        }
+
+        .faq-box {
+            background-color: var(--card-bg);
+            margin-bottom: 12px;
+            border-radius: 8px;
+            border: 1px solid #1f1f1f;
+        }
+
+        .faq-box input[type="checkbox"] {
+            display: none;
+        }
+
+        .faq-title {
+            padding: 15px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            display: flex;
+            justify-content: space-between;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .faq-icon {
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+        }
+
+        .faq-text {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 15px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-align: left;
+        }
+
+        .faq-box input[type="checkbox"]:checked ~ .faq-text {
+            max-height: 350px;
+            padding: 10px 15px 15px 15px;
+            border-top: 1px solid #1f1f1f;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.75rem;
+            color: #555;
+            border-top: 1px solid #141414;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 380px) {
+            .tab-label {
+                padding: 13px 14px;
+                font-size: 0.78rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="presents">Instituto Estrela D'Alva apresenta</div>
+        <div class="logo-container">
+            <img src="logo.jpg" alt="Logo Véu e Chama - Instituto Estrela D'Alva">
+        </div>
+        <h1>VÉU &amp; CHAMA</h1>
+        <div class="subtitle">TRAVESSIA ÍTACA • O RETORNO AO CENTRO</div>
+        <div class="event-dates">30 e 31 de outubro e 1º de novembro de 2026</div>
+    </header>
+
+    <div class="tabs-wrapper">
+
+        <input type="radio" name="tabs" id="tab1" class="tab-switch" checked>
+        <input type="radio" name="tabs" id="tab2" class="tab-switch">
+        <input type="radio" name="tabs" id="tab3" class="tab-switch">
+        <input type="radio" name="tabs" id="tab4" class="tab-switch">
+        <input type="radio" name="tabs" id="tab5" class="tab-switch">
+
+        <nav class="nav-tabs">
+            <label for="tab1" class="tab-label label1">Manifesto</label>
+            <label for="tab2" class="tab-label label2">A Linhagem</label>
+            <label for="tab3" class="tab-label label3">Cronograma</label>
+            <label for="tab4" class="tab-label label4">Pré-Cadastro</label>
+            <label for="tab5" class="tab-label label5">Dúvidas</label>
+        </nav>
+
+        <div class="content-container">
+
+            <!-- ABA 1: MANIFESTO -->
+            <section id="manifesto" class="tab-content">
+                <h2>E se a vida que você construiu já não couber em quem você se tornou?</h2>
+                <p>Você aprendeu a sustentar relações, responsabilidades, expectativas e versões de si. Mas chega um momento em que continuar se adaptando não é maturidade. É distância de si.</p>
+                <p>Ítaca nasce para esse momento: uma travessia para reconhecer o que já não cabe, reencontrar o que permanece vivo e integrar o corpo, o desejo, o feminino, o masculino, o limite e a direção.</p>
+
+                <div class="highlight-box">
+                    <p>Você não retorna para ser quem você era. Retorna para buscar a parte de você que nunca deveria ter ficado para trás.</p>
+                </div>
+
+                <h3>Por que Ítaca?</h3>
+                <p>Ítaca é o símbolo do retorno. Não de voltar para quem você era, mas de reconhecer quem você se tornou depois de tudo o que atravessou — porque toda travessia transforma. Você pode até retornar ao mesmo lugar, mas não retorna sendo a mesma pessoa.</p>
+                <p><strong>Ítaca não é voltar ao passado. É retornar ao próprio centro.</strong></p>
+
+                <h3>E se o que estiver faltando não for mudar sua vida, mas encontrar o seu centro dentro dela?</h3>
+                <p>Você não precisa abandonar tudo o que construiu para começar uma nova travessia. Às vezes, o chamado é outro: perceber o que dentro de você deixou de caminhar junto — razão e intuição, força e sensibilidade, ação e receptividade, o que você deseja e o que você sustenta.</p>
+                <p>Ítaca é onde essas partes voltam a se encontrar.</p>
+
+                <h3>O que é essa travessia?</h3>
+                <p>Uma experiência de retorno, presença e integração. Ítaca foi pensada para ser vivida no corpo, na presença e na experiência — não para sair dali com mais teoria, mas com mais clareza sobre si e sobre a forma como você quer caminhar daqui para frente.</p>
+                <ul>
+                    <li>Sensibilidade e direção;</li>
+                    <li>Intuição e ação;</li>
+                    <li>Desejo e estrutura;</li>
+                    <li>Feminino e masculino.</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <p>Algumas coisas a gente não entende. A gente atravessa.</p>
+                </div>
+            </section>
+
+            <!-- ABA 2: A LINHAGEM -->
+            <section id="linhagem" class="tab-content">
+                <h2>A Linhagem</h2>
+                <p>O Instituto Estrela D'Alva conduz a travessia Ítaca em dois movimentos complementares, do reencontro individual à integração das polaridades — sustentados por tradição, música e presença corporal.</p>
+
+                <h3>Travessia I — O Retorno à Mulher</h3>
+                <p>Uma experiência voltada ao reencontro com o corpo, a percepção, a sensibilidade, o desejo e a própria presença. Não para construir uma nova versão de si, mas para reconhecer o que já existe, escutar o que foi silenciado e recuperar espaço dentro da própria vida.</p>
+                <p>Ao longo dessa travessia, o feminino aparece não como fragilidade, mas como força de percepção, criação e consciência.</p>
+                <div class="highlight-box">
+                    <p>Retornar à mulher é voltar a habitar a si.</p>
+                </div>
+
+                <h3>Travessia II — Entre a Deusa e o Deus</h3>
+                <p>Quando sentir e agir deixam de caminhar em direções opostas. Dentro de nós existem forças que sentem, percebem, criam e recebem — e também forças que escolhem, direcionam, sustentam e constroem. Quando uma fala sem a outra, a vida pode perder equilíbrio.</p>
+                <p>Nesta travessia, o convite é reconhecer essas duas presenças dentro de si e permitir que elas deixem de disputar espaço: intuição e direção, sensibilidade e estrutura, desejo e ação.</p>
+                <div class="highlight-box">
+                    <p>O centro nasce quando essas forças aprendem a caminhar juntas.</p>
+                </div>
+
+                <h3>Sangue de Éwora · Tradição Stregheria Etrusca Romana</h3>
+                <p>No sábado à tarde, o grupo Sangue de Éwora conduz o aprofundamento da vivência: raízes e fundamentos da tradição Stregheria Etrusca Romana, cosmologia, natureza, ancestralidade, simbologia e uma prática guiada de presença, respiração e conexão com os elementos naturais.</p>
+
+                <h3>Participação especial — Igor Abravalor, violino ao vivo</h3>
+                <p>Durante a travessia, a música também estará presente. Há experiências que a palavra conduz; outras, a música atravessa. A arte também é caminho.</p>
+            </section>
+
+            <!-- ABA 3: CRONOGRAMA -->
+            <section id="cronograma" class="tab-content">
+                <h2>Cronograma Oficial</h2>
+                <p>30 e 31 de outubro e 1º de novembro de 2026 — uma travessia entre aquilo que você aprendeu a sustentar, aquilo que deixou de si pelo caminho e o reencontro entre a Deusa e o Deus dentro de você.</p>
+
+                <div class="day-title">Sexta-feira · 30/10</div>
+                <div class="day-subtitle">Travessia I — O Retorno à Mulher: do autoabandono à presença</div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="time">18h00 – 19h30</div>
+                        <div class="event-title">Recepção e coffee break de abertura</div>
+                        <div class="event-desc">Chegada, acolhimento e integração inicial dos participantes.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">20h00</div>
+                        <div class="event-title">Abertura — Onde começa a travessia</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">20h10</div>
+                        <div class="event-title">Onde eu me abandonei para permanecer?</div>
+                        <div class="event-desc">Feridas, concessões e silenciamentos.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">20h40</div>
+                        <div class="event-title">A mulher por trás dos papéis</div>
+                        <div class="event-desc">Quem existe antes de tudo aquilo que você precisa sustentar?</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">20h55</div>
+                        <div class="event-title">O corpo que você deixou para depois</div>
+                        <div class="event-desc">Presença, desejo e retorno ao corpo — vivência breve de respiração e escuta interna.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">21h10</div>
+                        <div class="event-title">Voltar para si</div>
+                        <div class="event-desc">Desejo, expressão e escolha.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">21h25</div>
+                        <div class="event-title">Encerramento — A mulher que retorna</div>
+                    </div>
+                </div>
+
+                <div class="day-title">Sábado · 31/10 — Manhã</div>
+                <div class="day-subtitle">Travessia II — Entre a Deusa e o Deus: desejo, limite e integração das polaridades</div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="time">8h30</div>
+                        <div class="event-title">Reabertura — Deusa e Deus não competem</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">8h45</div>
+                        <div class="event-title">Você sabe desejar sem se abandonar?</div>
+                        <div class="event-desc">Desejo, corpo, prazer e limite.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">9h20</div>
+                        <div class="event-title">O masculino que sente, deseja e sustenta</div>
+                        <div class="event-desc">Uma outra leitura da força.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">9h40</div>
+                        <div class="event-title">Quando a força vira armadura</div>
+                        <div class="event-desc">Controle, resistência e o cansaço de dar conta de tudo.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">10h10</div>
+                        <div class="event-title">O casamento interior</div>
+                        <div class="event-desc">Quando Deusa e Deus voltam a caminhar juntos.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">10h25</div>
+                        <div class="event-title">O retorno ao centro</div>
+                        <div class="event-desc">Consciência precisa virar movimento.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">10h35</div>
+                        <div class="event-title">Encerramento de Ítaca</div>
+                    </div>
+                </div>
+
+                <div class="day-title">Sábado · 31/10 — Tarde e Noite</div>
+                <div class="day-subtitle">Aprofundamento com Sangue de Éwora: tradição, natureza e ancestralidade</div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="time">14h00</div>
+                        <div class="event-title">Retorno e acolhimento</div>
+                        <div class="event-desc">Retomada da programação e apresentação da proposta da tarde.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">14h20</div>
+                        <div class="event-title">Stregheria Etrusca Romana — raízes e fundamentos</div>
+                        <div class="event-desc">Identidade, princípios e contexto da tradição, conduzidos por Sangue de Éwora.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">15h10</div>
+                        <div class="event-title">Cosmologia, natureza e ancestralidade</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">16h00 – 16h30</div>
+                        <div class="event-title">Intervalo — coffee break</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">16h30</div>
+                        <div class="event-title">Simbologia e elementos da tradição</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">17h20</div>
+                        <div class="event-title">Vivência prática</div>
+                        <div class="event-desc">Presença, respiração e conexão com a natureza.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">19h00</div>
+                        <div class="event-title">Ética, responsabilidade e respeito no caminho espiritual</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">20h15</div>
+                        <div class="event-title">Integração final e partilhas</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">20h40</div>
+                        <div class="event-title">Encerramento das atividades do dia</div>
+                    </div>
+                </div>
+
+                <div class="day-title">Domingo · 01/11</div>
+                <div class="day-subtitle">Encerramento — O Retorno</div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="time">8h30</div>
+                        <div class="event-title">Recepção e acolhimento</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">9h00</div>
+                        <div class="event-title">Início do processo de encerramento</div>
+                        <div class="event-desc">Retomada dos principais pontos vivenciados na travessia.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">9h30</div>
+                        <div class="event-title">Orientações finais</div>
+                        <div class="event-desc">Integração do que foi vivido e continuidade do processo.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">10h00</div>
+                        <div class="event-title">Espaço aberto para dúvidas</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">10h30</div>
+                        <div class="event-title">Roda de troca de experiências</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">11h15</div>
+                        <div class="event-title">Fechamento — O que levamos da travessia</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">11h30</div>
+                        <div class="event-title">Encerramento oficial do Véu e Chama</div>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <p>O valor promocional e a localização exata serão encaminhados aos interessados via WhatsApp ou e-mail após a triagem do pré-cadastro.</p>
+                </div>
+            </section>
+
+            <!-- ABA 4: PRÉ-CADASTRO -->
+            <section id="cadastro" class="tab-content">
+                <h2>Pré-Cadastro</h2>
+                <span class="free-badge">100% GRATUITO · SEM COMPROMISSO</span>
+                <p>Preencha seus dados para manifestar interesse na travessia "Véu &amp; Chama: Ítaca", de 30 e 31 de outubro e 1º de novembro de 2026. O pré-cadastro não gera nenhuma cobrança e não é uma inscrição confirmada — após a triagem, você receberá por WhatsApp ou e-mail todas as informações sobre valores, formas de pagamento e localização.</p>
+
+                <form action="https://formspree.io/f/SEU_ID_FORMSPREE" method="POST">
+                    <div class="form-group">
+                        <label for="nome">Nome completo</label>
+                        <input type="text" id="nome" name="nome" required placeholder="Seu nome">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" required placeholder="seuemail@exemplo.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="whatsapp">WhatsApp (com DDD)</label>
+                        <input type="tel" id="whatsapp" name="whatsapp" required placeholder="(00) 00000-0000">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="experiencia">Já participou de vivências do Instituto?</label>
+                        <select id="experiencia" name="experiencia">
+                            <option value="Nao">Não, será minha primeira vez</option>
+                            <option value="Sim">Sim, já participei antes</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Fazer Pré-Cadastro Gratuito</button>
+                    <p class="note-text">Não é necessário nenhum pagamento neste momento.</p>
+                </form>
+            </section>
+
+            <!-- ABA 5: DÚVIDAS (FAQ) -->
+            <section id="duvidas" class="tab-content">
+                <h2>Perguntas Frequentes</h2>
+
+                <div class="faq-box">
+                    <label class="faq-title" for="faq1">
+                        O pré-cadastro tem algum custo?
+                        <span class="faq-icon">+</span>
+                    </label>
+                    <input type="checkbox" id="faq1">
+                    <div class="faq-text">
+                        <p>Não. O pré-cadastro é 100% gratuito e não gera nenhuma cobrança automática ou compromisso financeiro. Ele serve apenas para registrar seu interesse na travessia.</p>
+                    </div>
+                </div>
+
+                <div class="faq-box">
+                    <label class="faq-title" for="faq2">
+                        Quando e onde acontece o evento?
+                        <span class="faq-icon">+</span>
+                    </label>
+                    <input type="checkbox" id="faq2">
+                    <div class="faq-text">
+                        <p>Acontece nos dias 30 e 31 de outubro e 1º de novembro de 2026. O valor promocional e a localização completa são enviados diretamente ao seu WhatsApp ou e-mail após o pré-cadastro e a triagem.</p>
+                    </div>
+                </div>
+
+                <div class="faq-box">
+                    <label class="faq-title" for="faq3">
+                        Preciso ter experiência com práticas espirituais ou rituais?
+                        <span class="faq-icon">+</span>
+                    </label>
+                    <input type="checkbox" id="faq3">
+                    <div class="faq-text">
+                        <p>Não é necessária nenhuma experiência prévia. A vivência é conduzida de forma acolhedora e progressiva, adequada tanto para iniciantes quanto para quem já participa de outros processos de autoconhecimento.</p>
+                    </div>
+                </div>
+
+                <div class="faq-box">
+                    <label class="faq-title" for="faq4">
+                        Quem conduz a vivência de sábado à tarde?
+                        <span class="faq-icon">+</span>
+                    </label>
+                    <input type="checkbox" id="faq4">
+                    <div class="faq-text">
+                        <p>A vivência de aprofundamento de sábado à tarde é conduzida pelo grupo Sangue de Éwora, trabalhando a tradição Stregheria Etrusca Romana, cosmologia, natureza e ancestralidade.</p>
+                    </div>
+                </div>
+
+                <div class="faq-box">
+                    <label class="faq-title" for="faq5">
+                        Fazer o pré-cadastro garante minha vaga?
+                        <span class="faq-icon">+</span>
+                    </label>
+                    <input type="checkbox" id="faq5">
+                    <div class="faq-text">
+                        <p>O pré-cadastro garante prioridade de contato, mas a confirmação da vaga acontece somente após a triagem e o retorno via WhatsApp ou e-mail, sem qualquer cobrança até essa etapa.</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <footer>
+        Instituto Estrela D'Alva © 2026 · Véu &amp; Chama: Ítaca
+    </footer>
+
+</body>
+</html>
